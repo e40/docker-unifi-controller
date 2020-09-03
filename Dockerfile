@@ -11,6 +11,8 @@ LABEL maintainer="aptalca"
 ARG UNIFI_BRANCH="stable"
 ARG DEBIAN_FRONTEND="noninteractive"
 
+ADD unifi_sysvinit_all-${UNIFI_VERSION}.deb /tmp/unifi.deb
+
 RUN \
  echo "**** install packages ****" && \
  apt-get update && \
@@ -23,20 +25,11 @@ RUN \
 	openjdk-8-jre-headless \
 	wget && \
  echo "**** install unifi ****" && \
- if [ -z ${UNIFI_VERSION+x} ]; then \
-	UNIFI_VERSION=$(curl -sX GET http://dl-origin.ubnt.com/unifi/debian/dists/${UNIFI_BRANCH}/ubiquiti/binary-amd64/Packages \
-	|grep -A 7 -m 1 'Package: unifi' \
-	| awk -F ': ' '/Version/{print $2;exit}' \
-	| awk -F '-' '{print $1}'); \
- fi && \
- curl -o \
- /tmp/unifi.deb -L \
-	"https://dl.ui.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb" && \
+ UNIFI_VERSION=${UNIFI_VERSION} && \
  dpkg -i /tmp/unifi.deb && \
  echo "**** cleanup ****" && \
  apt-get clean && \
- rm -rf \
-	/tmp/* \
+ rm -rf /tmp/* \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
 
