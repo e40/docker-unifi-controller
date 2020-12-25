@@ -9,19 +9,26 @@
 #      $ docker logs unifi-controller
 #    to see what it's up to, in case it doesn't start up.
 #
+# After a new version has been in use and it seems OK, you shoudl probably
+# do this to clean up space on the docker server:
+#    $ docker system prune
+# saying "y" to the question of continuing.  This can easily reclaim a GB
+# space, or more.
+#
 ###############################################################################
 #
 # HOW TO UPGRADE TO A NEW VERSION:
 # 1. Visit this in a browser:
-#      https://www.ui.com/download/unifi/unifi-ap
+#      https://www.ui.com/download/unifi
 #    and download to this directory the one for
 #      Debian/Ubuntu Linux and UniFi Cloud Key
+#    even though I'm running it in a container... it's the same version.
 # 2. Change UNIFI_VERSION below
 # 3. SAVE OLD .deb VERSIONS UNTIL YOU ARE SURE THE NEW ONE IS WORKING!
 #
 #### CURRENT:
-UNIFI_VERSION = 5.14.23
-#### PREVIOUS known good:
+UNIFI_VERSION = 6.0.41
+#### LAST KNOWN GOOD:
 #UNIFI_VERSION = 5.14.23
 #
 ###############################################################################
