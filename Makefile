@@ -27,9 +27,9 @@
 # 3. SAVE OLD .deb VERSIONS UNTIL YOU ARE SURE THE NEW ONE IS WORKING!
 #
 #### CURRENT:
-UNIFI_VERSION = 6.0.41
+UNIFI_VERSION = 6.0.43
 #### LAST KNOWN GOOD:
-#UNIFI_VERSION = 5.14.23
+#UNIFI_VERSION = 6.0.41
 #
 ###############################################################################
 
